@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("./clavePrivadaFirebase/credenciales.json"); // tu archivo descargado
+const serviceAccount = require("./clavePrivadaFirebase/credenciales.json"); 
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

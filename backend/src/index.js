@@ -5,7 +5,6 @@ const sensorRoutes = require("./routes/sensor");
 const cors = require('cors');
 app.use(cors());
 
-
 app.use(express.json());
 
 app.use("/api", sensorRoutes);
