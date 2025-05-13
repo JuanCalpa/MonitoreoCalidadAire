@@ -1,0 +1,43 @@
+body{
+  align-items: center;
+  place-content: center;
+}
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perfil-card {
+  padding: 2rem 3rem;
+  border-radius: 18px;
+  text-align: center;
+  background: linear-gradient(359deg,rgb(17, 22, 26) 0%, rgba(37, 50, 105, 1) 50%, rgba(27, 140, 140, 1) 100%);
+}
+
+.perfil-card h2 {
+  margin-bottom: 1rem;
+  color: #ccf5fa;
+}
+
+.perfil-card button {
+  margin: 0.5rem 1rem;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.perfil-card button:hover {
+  background: #1e40af;
+}
+
+.texto {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
