@@ -1,6 +1,18 @@
-body{
+body {
+  display: flex;
   align-items: center;
-  place-content: center;
+  justify-content: center;
+  height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+  margin: 0; /* Elimina márgenes predeterminados */
+  background-color: #121212; /* Agrega un color de fondo para contraste */
+}
+
+.general-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 .perfil-container {
   display: flex;

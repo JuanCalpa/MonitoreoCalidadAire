@@ -1,17 +1,44 @@
+// filepath: d:\Repositorio\MonitoreoCalidadAire\frontend\CalidadAireFront\src\components\LoginForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../StyleComponents/LoginForm.css';
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onLogin && onLogin({ email, password });
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    const response = await fetch('http://localhost:3000/api/sql/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ correo: email, contraseña: password }),
+    });
+
+    const data = await response.json();
+    console.log('Respuesta de la API:', data); // <-- Agrega este log
+
+    if (response.ok && data.success) {
+      alert('Inicio de sesión exitoso');
+      console.log('Usuario:', data.user); // <-- Agrega este log
+      if (data.user.tipo === 'admin') {
+        navigate('/admin');
+      } else if (data.user.tipo === 'investigador') {
+        navigate('/invitado');
+      }
+    } else {
+      alert(`Error: ${data.error || 'Credenciales inválidas'}`);
+    }
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
+    alert('Error al conectar con el servidor');
+  }
+};
   const handleRegister = () => {
     navigate('/register');
   };
@@ -24,14 +51,14 @@ const LoginForm = ({ onLogin }) => {
           type="email"
           placeholder="Correo electrónico"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Entrar</button>
